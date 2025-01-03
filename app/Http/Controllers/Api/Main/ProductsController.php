@@ -35,7 +35,7 @@ class ProductsController extends Controller
             'price' => 'required',
             'description' => 'required',
             'image' => 'required',
-            'quantity' => 'required',
+            'quantity' => 'required|integer|min:1',
 
         ]);
         $image = $request->file('image');
