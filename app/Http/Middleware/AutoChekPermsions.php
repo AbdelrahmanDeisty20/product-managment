@@ -17,18 +17,16 @@ class AutoChekPermsions
     {
         $user = $request->user();
 
-        // تحقق من تسجيل الدخول
-        if (!$user) {
-            return response()->json(['message' => 'Unauthorized.'], 401);
-        }
 
-        // جلب اسم الميثود من الـ Route
+        
+
+
         $actionName = $request->route()->getActionMethod();
 
-        // عمليات ممنوعة على المستخدمين بدون دور
+
         $restrictedMethods = ['create', 'store', 'edit', 'update', 'destroy'];
 
-        // إذا كان المستخدم بدون دور ويطلب ميثود مقيد
+
         if (!$user->hasRole('Admin') && in_array($actionName, $restrictedMethods)) {
             return abort(403);
         }
